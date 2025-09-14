@@ -1,0 +1,25 @@
+name: Pre-commit Hooks Check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  github_list_pr_files:
+    name: List Modified Files
+    uses: zcode-ia/gitops-workflows/.github/workflows/github-list-pr-files.yml@e6190ca441f297c5b5ec3794726ed20d08fded1d # v1.12.0
+    with:
+      github_repository: ${{ github.repository }}
+      github_event_pull_request_number: ${{ github.event.pull_request.number }}
+    secrets:
+      github_secret_token: ${{ secrets.GITHUB_TOKEN }}
+
+  pre_commit_check:
+    name: Run Pre-commit Hooks
+    needs:
+      - github_list_pr_files
+    if: needs.github_list_pr_files.outputs.pr_files_count > 0
+    uses: zcode-ia/gitops-workflows/.github/workflows/pre-commit.yml@e6190ca441f297c5b5ec3794726ed20d08fded1d # v1.12.0
+    with:
+      encoded_modified_files: ${{ needs.github_list_pr_files.outputs.encoded_modified_files }}
