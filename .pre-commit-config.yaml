@@ -1,0 +1,29 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+
+default_install_hook_types: [pre-commit, commit-msg]
+default_stages: [pre-commit]
+
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+    -   id: check-yaml
+    -   id: check-added-large-files
+    -   id: mixed-line-ending
+        args: ['--fix=lf']
+    -   id: check-executables-have-shebangs
+    -   id: check-shebang-scripts-are-executable
+-   repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.10.0.1
+    hooks:
+    -   id: shellcheck
+-   repo: local
+    hooks:
+    -   id: commitlint
+        name: Commit message lint
+        entry: npx --no-install commitlint --edit
+        language: system
+        stages: [commit-msg]
