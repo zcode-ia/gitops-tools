@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/zcode-ia/gitops-tools/compare/v1.1.0...v1.2.0) (2025-09-21)
+
+
+### Features
+
+* add hooks scripts ([9bd1ea2](https://github.com/zcode-ia/gitops-tools/commit/9bd1ea2a1533a2b80386be0961d21ef4c1d71ed0))
+
 # [1.1.0](https://github.com/zcode-ia/gitops-tools/compare/v1.0.0...v1.1.0) (2025-09-21)
 
 
