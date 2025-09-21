@@ -5,13 +5,18 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+  pull-requests: read
+
 jobs:
   github_list_pr_files:
     name: List Modified Files
-    uses: zcode-ia/gitops-workflows/.github/workflows/github-list-pr-files.yml@e6190ca441f297c5b5ec3794726ed20d08fded1d # v1.12.0
+    uses: zcode-ia/gitops-workflows/.github/workflows/github-list-pr-files.yml@edad4257e0935309a6cdfe51d8a282cdf8c3e94e # v1.15.0
     with:
       github_repository: ${{ github.repository }}
       github_event_pull_request_number: ${{ github.event.pull_request.number }}
+      skip_token_generation_for_tools_repository: true
     secrets:
       github_secret_token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -20,6 +25,7 @@ jobs:
     needs:
       - github_list_pr_files
     if: needs.github_list_pr_files.outputs.pr_files_count > 0
-    uses: zcode-ia/gitops-workflows/.github/workflows/pre-commit.yml@e6190ca441f297c5b5ec3794726ed20d08fded1d # v1.12.0
+    uses: zcode-ia/gitops-workflows/.github/workflows/pre-commit.yml@edad4257e0935309a6cdfe51d8a282cdf8c3e94e # v1.15.0
     with:
       encoded_modified_files: ${{ needs.github_list_pr_files.outputs.encoded_modified_files }}
+      skip_token_generation_for_tools_repository: true

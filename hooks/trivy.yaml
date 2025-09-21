@@ -1,0 +1,8 @@
+severity:
+  - HIGH
+  - CRITICAL
+  - MEDIUM
+  - LOW
+exit-code: 1
+ignore-unfixed: true
+skip-update: false

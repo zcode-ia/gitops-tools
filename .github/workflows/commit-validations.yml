@@ -8,4 +8,6 @@ on:
 jobs:
   commit_lint:
     name: Run Commit Lint
-    uses: zcode-ia/gitops-workflows/.github/workflows/commit-lint.yml@e6190ca441f297c5b5ec3794726ed20d08fded1d # v1.12.0
+    uses: zcode-ia/gitops-workflows/.github/workflows/commit-lint.yml@edad4257e0935309a6cdfe51d8a282cdf8c3e94e # v1.15.0
+    with:
+      skip_token_generation_for_tools_repository: true
