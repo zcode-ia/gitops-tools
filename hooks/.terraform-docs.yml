@@ -1,0 +1,8 @@
+formatter: markdown table
+
+lockfile:
+  enabled: false
+
+output:
+  file: README.md
+  mode: inject
